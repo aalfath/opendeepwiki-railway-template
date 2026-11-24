@@ -44,7 +44,7 @@ This template runs OpenDeepWiki 2.0.6 as three services: the Next.js web UI (pub
 claude mcp add --transport http opendeepwiki https://YOUR-DOMAIN/api/mcp/OWNER/REPO --header "Authorization: Bearer MCP_TOKEN"
 ```
 
-**Resources**: it runs on Railway's smallest plan (0.5 GB RAM per service): after a wiki run the backend used about 260 MB, the web UI about 90 MB and Postgres about 120 MB. Large repositories need more RAM for cloning: give the Backend 1 GB or more for repositories over a few hundred MB.
+**Resources**: it runs on Railway's smallest plan (0.5 GB RAM per service): after a wiki run the backend used about 260 MB, the web UI about 90 MB and Postgres about 120 MB. Large repositories may need more RAM for cloning and generation; if the Backend restarts during a big import, raise its memory to 1 GB or more.
 
 **Not included**: Graphify knowledge graphs run only when an admin starts them, and the Feishu, QQ, WeChat and Slack bots, GitHub App import and Google sign-in stay off until you configure them under Admin. Self-registration is blocked; set `ALLOW_REGISTRATION=true` on the Backend to open it.
 
