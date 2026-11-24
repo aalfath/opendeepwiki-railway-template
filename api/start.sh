@@ -31,11 +31,17 @@ export ENDPOINT="${ENDPOINT:-${LLM_BASE_URL:-https://api.openai.com/v1}}"
 export CHAT_REQUEST_TYPE="${CHAT_REQUEST_TYPE:-${LLM_PROVIDER_TYPE:-OpenAI}}"
 export WIKI_CATALOG_MODEL="${WIKI_CATALOG_MODEL:-${LLM_MODEL:-gpt-4o-mini}}"
 export WIKI_CONTENT_MODEL="${WIKI_CONTENT_MODEL:-${LLM_MODEL:-gpt-4o-mini}}"
+# Upstream's appsettings.json ships AI:Endpoint=https://api.routin.ai/v1, and the first-boot
+# provider setup reads AI:* before ENDPOINT/CHAT_*, so set AI:* explicitly.
+export AI__Endpoint="$ENDPOINT"
+export AI__ApiKey="$CHAT_API_KEY"
+export AI__RequestType="$CHAT_REQUEST_TYPE"
 [ -n "$CHAT_API_KEY" ] || log "WARNING: LLM_API_KEY is empty; add an AI provider under Admin before importing a repository."
 
 # Small-plan defaults (override any of them with a variable of the same name).
 export WIKI_LANGUAGES="${WIKI_LANGUAGES:-en}"
 export WIKI_PARALLEL_COUNT="${WIKI_PARALLEL_COUNT:-2}"
+export WikiGenerator__ParallelCount="$WIKI_PARALLEL_COUNT"
 export WIKI_MAX_CONCURRENT_GENERATIONS="${WIKI_MAX_CONCURRENT_GENERATIONS:-1}"
 
 # Persistent data on the Railway volume at /data.
