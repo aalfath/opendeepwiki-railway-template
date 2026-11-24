@@ -102,6 +102,9 @@ else
   log "admin account is not on upstream's default password"
 fi
 
+# Turn on the AI provider the wiki tasks are bound to (non-fatal; see activate-providers.py).
+ADMIN_EMAIL="$ADMIN_EMAIL" python3 /usr/local/lib/odw/activate-providers.py "$base" || log "provider check failed (non-fatal)"
+
 # Front proxy.
 REGISTER_RULE='handle /api/auth/register {
 		respond "Self-registration is disabled. Ask an admin to create your account." 403

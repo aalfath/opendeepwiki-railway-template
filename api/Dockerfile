@@ -8,6 +8,7 @@ FROM crpi-j9ha7sxwhatgtvj4.cn-shenzhen.personal.cr.aliyuncs.com/open-deepwiki/op
 USER root
 COPY --from=caddy /usr/bin/caddy /usr/local/bin/caddy
 COPY --chmod=755 start.sh /usr/local/bin/odw-start
+COPY activate-providers.py /usr/local/lib/odw/activate-providers.py
 # Fail the build early if a tool the wrapper needs is missing from the base image.
 RUN command -v setpriv && command -v curl && command -v python3 && caddy version
 
