@@ -97,8 +97,9 @@ else
 fi
 
 # Front proxy.
-REGISTER_RULE='@register path /api/auth/register
-	respond @register "Self-registration is disabled. Ask an admin to create your account." 403'
+REGISTER_RULE='handle /api/auth/register {
+		respond "Self-registration is disabled. Ask an admin to create your account." 403
+	}'
 [ "${ALLOW_REGISTRATION:-false}" = "true" ] && REGISTER_RULE='# self-registration allowed (ALLOW_REGISTRATION=true)'
 cat > /tmp/Caddyfile <<CADDY
 {
